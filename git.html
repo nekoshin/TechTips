@@ -13,50 +13,54 @@
 	<body>
 		<div class="container">
 		<header><a href="index.html">TechTips</a></header>
-		<h1>Bitbucket</h1>
+		<div class="page-header"><h1>Git</h1></div>
 		<section>
-			<h2>First commit</h2>
+			<h2>Git for Windows(msysGit)</h2>
+			<p>今は名前がmsysGitからGit for Windowsに変わっているらしく、</p>
+			<div class="panel panel-info">
+				<div class="panel-heading"><span class="panel-title">Git for Windows(msysGit)</span></div>
+				<div class="panel-body"><a href="http://msysgit.github.io/">http://msysgit.github.io/</a></div>
+			</div>
+			<p>
+				からダウンロードできる。<br />
+			 	環境変数の適用をGit Bashだけにしてたけれども、cmd.exeやnyaosから使用したかったので、
+			 	結局手動でpath追加した気がする。
+			</p>
+		</section>
+		<section>
+			<h2>Initial configuration</h2>
+			<h3>ユーザ名とメールアドレスの設定</h3>
 			<pre class="prettyprint">
-$ cd C:/repository\reponame\	
-$ git init
-Reinitialized existing Git repository in C:/repository/reponame/.git/
+$ git config --global user.email "you@example.com"
+$ git config --global user.name "Your Name"
+$ git config --global color.ui auto</pre>
 
-$ git remote add origin https://xxxx@bitbucket.org/xxxx/reponame.git
-fatal: remote origin already exists. ← すでに作られている場合
-
-$ echo test >> README.md
-
-$ git add README.md
-			</pre>
-			commitをする際にemailとユーザ名が設定されていないときは下記が表示される。
+			<p><code>--global</code>なので、そのシステム上（すべてのrepository）で使用されるものとなる。
+			異なる識別情報を設定したいときは、<code>--global</code>なしで設定する。<br/>
+			最後のは見やすくするための設定。</p>
+			
+			<h3>SSH</h3>
+			<p>先にユーザディレクトリに<code>.ssh</code>フォルダを作成しておく。<br/>
+			windowsであれば、<code>C:\users\ユーザ名\.ssh</code>のような感じで。</p>
 			<pre class="prettyprint">
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.</pre>
-			<code>--global</code>なので、そのシステム上（すべてのrepository）で使用されるものとなる。
-			異なる識別情報を設定したいときは、<code>--global</code>なしで設定する。
-			<pre class="prettyprint">
-$ git commit
-[master (root-commit) 7a08839] initla commit
- 1 file changed, 1 insertion(+)
- create mode 100644 README.md
- 
- $ git push -u origin master
-Password for 'https://xxxx@bitbucket.org':
-Counting objects: 3, done.
-Writing objects: 100% (3/3), 229 bytes, done.
-Total 3 (delta 0), reused 0 (delta 0)
-To https://xxxx@bitbucket.org/xxxx/reponame.git
- * [new branch]      master -> master
-Branch master set up to track remote branch master from origin.</pre>
-
-
+$ ssh-keygen -t rsa -C "username@example.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (//.ssh/id_rsa): C:/users/username/.ssh
+sa
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:/users/username/.ssh/id_rsa.
+Your public key has been saved in C:/users/username/.ssh/id_rsa.pub.
+The key fingerprint is:
+フィンガープリントが表示される username@example.com</pre>
+			
+			<p>これでid_rsa,id_rsa.pubが生成される<br />
+			公開鍵を表示したいときは
+			</p>
+<pre class="prettyprint">$ cat id_rsa.pub</pre>
+			<p>nyaos使ってると、何気に<code>cat</code>と打っても表示してくれるから地味に助かる。<br />
+			テキストエディタなどで表示するのは、うまくいかない。</p>
+			
 		</section>
 		
 		<footer>
