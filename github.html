@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+    	<meta charset="utf-8">
+		<title>[NEKOSHIN]Tech Tips -Bitbucket-</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div class="container">
+		<header><a href="index.html">TechTips</a></header>
+		<h1>Bitbucket</h1>
+		<section>
+			<h2>First commit</h2>
+			<pre class="prettyprint">
+$ cd C:/repository\reponame\	
+$ git init
+Reinitialized existing Git repository in C:/repository/reponame/.git/
+
+$ git remote add origin https://xxxx@bitbucket.org/xxxx/reponame.git
+fatal: remote origin already exists. ← すでに作られている場合
+
+$ echo test >> README.md
+
+$ git add README.md
+			</pre>
+			commitをする際にemailとユーザ名が設定されていないときは下記が表示される。
+			<pre class="prettyprint">
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.</pre>
+			<code>--global</code>なので、そのシステム上（すべてのrepository）で使用されるものとなる。
+			異なる識別情報を設定したいときは、<code>--global</code>なしで設定する。
+			<pre class="prettyprint">
+$ git commit
+[master (root-commit) 7a08839] initla commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+ 
+ $ git push -u origin master
+Password for 'https://xxxx@bitbucket.org':
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 229 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://xxxx@bitbucket.org/xxxx/reponame.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.</pre>
+
+
+		</section>
+		
+		<footer>
+			<address>
+				<strong>NEKOSHIN</strong>
+				<a href="http://www.nekoshin.net/">www.nekoshin.net</a>
+			</address>
+		</footer>
+		
+		</div>
+	</body>
+</html>
